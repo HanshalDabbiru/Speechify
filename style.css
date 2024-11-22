@@ -1,0 +1,34 @@
+h1 {
+  font-size: 8vh;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0px;
+}
+.file-upload {
+  display: none;
+}
+.file-upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+.file-upload-label {
+  font-size: 3vh;
+  padding: 0%;
+}
+.file-upload-label:hover {
+  cursor: pointer;
+}
+.file-upload-success {
+  display: none;
+}
+.file-upload-fail {
+  display: none;
+}

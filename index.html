@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Speech.ai</title>
-    <!--Insert stylesheet here-->
-</head>
-<body>
-    <h1>Welcome to Speech.ai!</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promptly</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="centered">
+      <h1>Welcome to Promptly!</h1>
+      <form class="file-upload-form" action="/upload" method="post">
+        <label class="file-upload-label" for="file-upload">
+          Click to upload your speech
+        </label>
+        <input
+          class="file-upload"
+          type="file"
+          accept="application/pdf"
+          id="file-upload"
+        />
+        <h4 class="file-upload-success" id="successful-upload">
+          File has been uploaded successfully
+        </h4>
+        <h4 class="file-upload-fail" id="failed-upload">
+          File upload was unsuccessful
+        </h4>
+        <h4 class="file-upload-blank" id="blank-upload"></h4>
+        <button type="submit">Let's Go!</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
