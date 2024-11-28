@@ -1,7 +1,6 @@
 h1 {
   font-size: 8vh;
 }
-
 .centered {
   display: flex;
   align-items: center;
@@ -9,6 +8,9 @@ h1 {
   flex-direction: column;
   height: 100vh;
   margin: 0px;
+}
+.lets-go {
+  display: none;
 }
 .file-upload {
   display: none;

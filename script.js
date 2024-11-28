@@ -2,6 +2,7 @@ document.getElementById("file-upload").addEventListener("change", function () {
   const success = document.getElementById("successful-upload");
   const fail = document.getElementById("failed-upload");
   const blank = document.getElementById("blank-upload");
+  const letsGo = document.getElementById("lets-go");
   const fileInput = this;
   const file = fileInput.files[0];
 
@@ -9,6 +10,7 @@ document.getElementById("file-upload").addEventListener("change", function () {
   if (file) {
     success.style.display = "block";
     fail.style.display = "none";
+    letsGo.style.display = "block";
   } else {
     fail.style.display = "block";
     success.style.display = "none";
