@@ -19,17 +19,19 @@ document.getElementById("file-upload").addEventListener("change", function () {
 
 function uploadFile() {
   const uploadForm = document.getElementById("file-upload");
-  console.log(uploadForm.files);
-  const speech = uploadForm.files[0];
+  const file = uploadForm.files[0];
 
-  if (speech) {
+  if (file) {
     const reader = new FileReader();
     reader.onload = function (event) {
-      const speechContent = new Uint8Array(event.target.result);
-      localStorage.setItem("speechContent", speechContent);
-      window.location.href = "teleprompter.html";
+      const fileContent = new Uint8Array(event.target.result);
+      const convertedContent = btoa( // convert the Uint8Array into a string for storage
+        String.fromCharCode(fileContent)
+      );
+      localStorage.setItem("fileContent", convertedContent);
+      window.location.href = "teleprompter.html"; // move to teleprompter.html
     };
-    reader.readAsArrayBuffer(speech);
+    reader.readAsArrayBuffer(file);
   } else {
     console.log("no file");
   }
