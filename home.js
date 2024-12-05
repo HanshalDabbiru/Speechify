@@ -25,12 +25,12 @@ function uploadFile() {
   if (speech) {
     const reader = new FileReader();
     reader.onload = function (event) {
-      const speechContent = event.target.result;
+      const speechContent = new Uint8Array(event.target.result);
       localStorage.setItem("speechContent", speechContent);
       window.location.href = "teleprompter.html";
     };
-    reader.readAsText(speech);
-    console.log("file");
+    reader.readAsArrayBuffer(speech);
+  } else {
+    console.log("no file");
   }
-  console.log("no file");
 }
