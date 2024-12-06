@@ -1,3 +1,7 @@
+let content = "";
+let currentIndex = 0;
+const SEGMENT_SIZE = 10;
+
 window.addEventListener("load", function () {
   // only start when the page has fully loaded
   pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -24,7 +28,6 @@ function retriveAndConvert() {
 }
 
 function parseContent(fileContent) {
-  let content = "";
   pdfjsLib.getDocument({ data: fileContent }).promise.then(function (pdf) {
     // once the document is found, call function(pdf)
     pdf.getPage(1).then(function (page) {
@@ -34,9 +37,28 @@ function parseContent(fileContent) {
         for (let j = 0; j < text.items.length; j++) {
           content += text.items[j].str + " ";
         }
-        document.getElementById("content").innerText = content;
         document.getElementById("loading").style.display = "none";
+        showNextSet();
+        const interval = setInterval(showNextSet, 10000);
       });
     });
   });
+} 
+
+function showNextSet() {
+  var words = content.split(" ");
+  var currentSet = words.slice(currentIndex, currentIndex + SEGMENT_SIZE).join(" ");
+  var nextSet = words.slice(currentIndex + SEGMENT_SIZE, currentIndex + (SEGMENT_SIZE * 2)).join(" ");
+
+  currentIndex += SEGMENT_SIZE;
+  if(currentIndex > words.length) {
+    currentIndex = words.length;
+    clearInterval(interval);
+  }
+
+  document.getElementById("currentContent").innerText = currentSet;
+  document.getElementById("nextContent").innerText = nextSet;
+  document.getElementById("nextContent").style.color = "gray"
 }
+
+
