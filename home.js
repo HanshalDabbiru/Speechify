@@ -25,8 +25,8 @@ function uploadFile() {
     const reader = new FileReader();
     reader.onload = function (event) {
       const fileContent = new Uint8Array(event.target.result);
-      const convertedContent = btoa( // convert the Uint8Array into a string for storage
-        String.fromCharCode(fileContent)
+      const convertedContent = btoa(
+        Array.from(fileContent, (byte) => String.fromCharCode(byte)).join("")
       );
       localStorage.setItem("fileContent", convertedContent);
       window.location.href = "teleprompter.html"; // move to teleprompter.html

@@ -8,9 +8,9 @@
   <body>
     <div class="centered">
       <h1 id="loading">Loading...</h1>
-      <p id="currentContent"></p>
-      <p id="nextContent"></p>
-      <button type="button" onclick="showNextSet()">Next</button>
+      <p class="current" id="currentContent"></p>
+      <p class="next" id="nextContent"></p>
+      <button id="play-pause" onclick="playPause()">Pause</button>
     </div>
     <script type="module">
       import pdfjsDist from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/+esm";
