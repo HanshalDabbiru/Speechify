@@ -9,16 +9,15 @@ window.addEventListener("load", function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/build/pdf.worker.min.mjs";
 
-  const fileContent = retriveAndConvert();
-  if (fileContent) {
-    parseContent(fileContent);
-  } else {
+  const fileContent = retrieveAndConvert();
+  if (fileContent) parseContent(fileContent);
+  else {
     console.log("file not found");
   }
 });
 
-function retriveAndConvert() {
-  const convertedContent = localStorage.getItem("fileContent"); // retrive the file from local storage
+function retrieveAndConvert() {
+  const convertedContent = localStorage.getItem("fileContent"); // retrieve the file from local storage
   const binaryString = atob(convertedContent); // convert the string to a binary string
   const fileContent = new Uint8Array(binaryString.length);
 
