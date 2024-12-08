@@ -5,8 +5,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  height: 100vh;
+  height: 50vh;
   margin: 0px;
 }
 .lets-go {
@@ -19,7 +18,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25%;
 }
 .file-upload-label {
   font-size: 3vh;
@@ -33,4 +31,32 @@ h1 {
 }
 .file-upload-fail {
   display: none;
+}
+
+.home_options {
+  display: flex;
+}
+
+.teleprompter {
+  width: 33%;
+  height: 25vh;
+  background-color: rosybrown;
+}
+
+.presentation {
+  width: 34%;
+  height: 25vh;
+  background-color: royalblue;
+}
+
+.tele_and_pres {
+  width: 33%;
+  height: 25vh;
+}
+
+.tp_options {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: green;
 }
