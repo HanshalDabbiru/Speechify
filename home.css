@@ -35,18 +35,27 @@ h1 {
 
 .home_options {
   display: flex;
+  flex-direction: row;
 }
 
 .teleprompter {
   width: 33%;
   height: 25vh;
   background-color: rosybrown;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .presentation {
   width: 34%;
   height: 25vh;
   background-color: royalblue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .tele_and_pres {
@@ -56,8 +65,9 @@ h1 {
 
 .tp_options {
   height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   background-color: green;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
