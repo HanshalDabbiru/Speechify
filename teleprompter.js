@@ -11,9 +11,7 @@ window.addEventListener("load", function () {
 
   const fileContent = retrieveAndConvert();
   if (fileContent) parseContent(fileContent);
-  else {
-    console.log("file not found");
-  }
+  else console.log("file not found");
 });
 
 function retrieveAndConvert() {
