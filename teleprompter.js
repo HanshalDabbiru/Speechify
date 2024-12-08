@@ -9,31 +9,15 @@ window.addEventListener("load", function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/build/pdf.worker.min.mjs";
 
-  const fileContent = retriveAndConvert();
-  if (fileContent) {
-    // parseContent(fileContent);
-    pdfjsLib.getDocument({ data: fileContent }).promise.then(function (pdf) {
-      // once the document is found, call function(pdf)
-      pdf.getPage(1).then(function (page) {
-        // once the first page is found, call function(page)
-        page.getTextContent().then(function (text) {
-          // once the text is found, call function(text)
-          for (let j = 0; j < text.items.length; j++) {
-            content += text.items[j].str + " ";
-          }
-          document.getElementById("loading").style.display = "none";
-          showNextSet();
-          interval = setInterval(showNextSet, 2000);
-        });
-      });
-    });
-  } else {
+  const fileContent = retrieveAndConvert();
+  if (fileContent) parseContent(fileContent);
+  else {
     console.log("file not found");
   }
 });
 
-function retriveAndConvert() {
-  const convertedContent = localStorage.getItem("fileContent"); // retrive the file from local storage
+function retrieveAndConvert() {
+  const convertedContent = localStorage.getItem("fileContent"); // retrieve the file from local storage
   const binaryString = atob(convertedContent); // convert the string to a binary string
   const fileContent = new Uint8Array(binaryString.length);
 
@@ -44,7 +28,23 @@ function retriveAndConvert() {
   return fileContent;
 }
 
-function parseContent(fileContent) {}
+function parseContent(fileContent) {
+  pdfjsLib.getDocument({ data: fileContent }).promise.then(function (pdf) {
+    // once the document is found, call function(pdf)
+    pdf.getPage(1).then(function (page) {
+      // once the first page is found, call function(page)
+      page.getTextContent().then(function (text) {
+        // once the text is found, call function(text)
+        for (let j = 0; j < text.items.length; j++) {
+          content += text.items[j].str + " ";
+        }
+        document.getElementById("loading").style.display = "none";
+        showNextSet();
+        interval = setInterval(showNextSet, 2000);
+      });
+    });
+  });
+}
 
 function showNextSet() {
   var words = content.split(" ");
