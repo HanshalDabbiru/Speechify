@@ -39,7 +39,7 @@ h1 {
 }
 
 .teleprompter {
-  width: 33%;
+  width: 50%;
   height: 25vh;
   background-color: rosybrown;
   display: flex;
@@ -49,18 +49,13 @@ h1 {
 }
 
 .presentation {
-  width: 34%;
+  width: 50%;
   height: 25vh;
   background-color: royalblue;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
-
-.tele_and_pres {
-  width: 33%;
-  height: 25vh;
 }
 
 .tp_options {
