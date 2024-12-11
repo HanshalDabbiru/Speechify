@@ -29,18 +29,20 @@ function retrieveAndConvert() {
 function parseContent(fileContent) {
   pdfjsLib.getDocument({ data: fileContent }).promise.then(function (pdf) {
     // once the document is found, call function(pdf)
-    pdf.getPage(1).then(function (page) {
-      // once the first page is found, call function(page)
-      page.getTextContent().then(function (text) {
-        // once the text is found, call function(text)
-        for (let j = 0; j < text.items.length; j++) {
-          content += text.items[j].str + " ";
-        }
-        document.getElementById("loading").style.display = "none";
-        showNextSet();
-        interval = setInterval(showNextSet, 2000);
+    for (let i = 0; i < pdf.numPages; i++) {
+      pdf.getPage(i).then(function (page) {
+        // once the first page is found, call function(page)
+        page.getTextContent().then(function (text) {
+          // once the text is found, call function(text)
+          for (let j = 0; j < text.items.length; j++) {
+            content += text.items[j].str + " ";
+          }
+        });
       });
-    });
+    }
+    document.getElementById("loading").style.display = "none";
+    showNextSet();
+    interval = setInterval(showNextSet, 2000);
   });
 }
 
