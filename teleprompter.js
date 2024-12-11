@@ -29,7 +29,7 @@ function retrieveAndConvert() {
 function parseContent(fileContent) {
   pdfjsLib.getDocument({ data: fileContent }).promise.then(function (pdf) {
     // once the document is found, call function(pdf)
-    for (let i = 0; i < pdf.numPages; i++) {
+    for (let i = 1; i <= pdf.numPages; i++) {
       pdf.getPage(i).then(function (page) {
         // once the first page is found, call function(page)
         page.getTextContent().then(function (text) {
