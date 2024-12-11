@@ -1,7 +1,7 @@
 let content = "";
 let currentIndex = 0;
 let interval;
-let isPaused = false;
+let isPaused = true;
 const SEGMENT_SIZE = 10;
 let scrollSpeed = parseInt(document.getElementById("speed-control").value); // Initial speed
 let defaultInterval = 2000;
@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
 
   const fileContent = retrieveAndConvert();
   if (fileContent) parseContent(fileContent);
-  else console.log("file not found");
+  else document.getElementById("currentContent").innerText = "File not found.";
 });
 
 function retrieveAndConvert() {
@@ -37,14 +37,16 @@ function parseContent(fileContent) {
           // once the text is found, call function(text)
           for (let j = 0; j < text.items.length; j++)
             content += text.items[j].str + " ";
+          if(i == pdf.numPages) {
+            document.getElementById("loading").style.display = "none";
+            showNextSet();
+          }
         });
       });
     }
-    document.getElementById("loading").style.display = "none";
-    showNextSet();
-    interval = setInterval(showNextSet, 2000);
   });
 }
+
 
 function showNextSet() {
   var words = content.split(" ");
@@ -66,7 +68,7 @@ function showNextSet() {
 }
 
 function calculateInterval(speed) {
-  return (11 - speed) * 200 + 1700;
+  return 5675-675*speed;
 }
 
 // Play/Pause functionality
