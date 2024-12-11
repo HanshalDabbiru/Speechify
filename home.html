@@ -9,65 +9,51 @@
     <div class="centered">
       <h1>Welcome to Promptly!</h1>
     </div>
+    <div class="home">
+      <div class="home_options">
+        <div class="teleprompter">
+          <form class="file-upload-form" id="upload-form">
+            <label class="file-upload-label" for="file-upload">
+              Click to upload your speech
+            </label>
+            <input
+              class="file-upload"
+              type="file"
+              accept="application/pdf"
+              id="file-upload"
+            />
+            <h4 class="file-upload-success" id="successful-upload">
+              File has been uploaded successfully
+            </h4>
+            <h4 class="file-upload-fail" id="failed-upload">
+              File upload was unsuccessful
+            </h4>
+            <h4 class="file-upload-blank" id="blank-upload"></h4>
+          </form>
+        </div>
 
-    <div class="home_options">
-      <div class="teleprompter">
-        <form class="file-upload-form" id="upload-form">
-          <label class="file-upload-label" for="file-upload">
-            Click to upload your speech
-          </label>
-          <input
-            class="file-upload"
-            type="file"
-            accept="application/pdf"
-            id="file-upload"
-          />
-          <h4 class="file-upload-success" id="successful-upload">
-            File has been uploaded successfully
-          </h4>
-          <h4 class="file-upload-fail" id="failed-upload">
-            File upload was unsuccessful
-          </h4>
-          <h4 class="file-upload-blank" id="blank-upload"></h4>
-          <button
-            type="button"
-            class="lets-go"
-            id="lets-go"
-            onclick="uploadFile()"
-          >
-            Let's Go!
-          </button>
-        </form>
+        <div class="presentation">
+          <form class="file-upload-form" id="upload-presentation">
+            <label class="file-upload-label" for="presentation-upload">
+              Click to upload your presentation
+            </label>
+            <input
+              class="file-upload"
+              type="file"
+              accept="application/pdf"
+              id="presentation-upload"
+            />
+            <h4 class="file-upload-success" id="successful-upload-p">
+              File has been uploaded successfully
+            </h4>
+            <h4 class="file-upload-fail" id="failed-upload-p">
+              File upload was unsuccessful
+            </h4>
+            <h4 class="file-upload-blank" id="blank-upload-p"></h4>
+          </form>
+        </div>
       </div>
-
-      <div class="presentation">
-        <form class="file-upload-form" id="upload-presentation">
-          <label class="file-upload-label" for="file-upload">
-            Click to upload your presentation
-          </label>
-          <!-- <input
-            class="file-upload"
-            type="file"
-            accept="application/pdf"
-            id="file-upload"
-          /> -->
-          <h4 class="file-upload-success" id="successful-upload-p">
-            File has been uploaded successfully
-          </h4>
-          <h4 class="file-upload-fail" id="failed-upload-p">
-            File upload was unsuccessful
-          </h4>
-          <h4 class="file-upload-blank" id="blank-upload-p"></h4>
-          <button
-            type="button"
-            class="lets-go"
-            id="lets-go"
-            onclick="uploadPresentation()"
-          >
-            Let's Go!
-          </button>
-        </form>
-      </div>
+      <button id="lets-go" onclick="uploadFile()">Let's Go</button>
     </div>
     <script src="home.js"></script>
   </body>
