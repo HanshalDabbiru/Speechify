@@ -11,6 +11,11 @@
       <p class="current" id="currentContent"></p>
       <p class="next" id="nextContent"></p>
       <button id="play-pause" onclick="playPause()">Pause</button>
+      <div id="teleprompter-controls">
+        <label for="speed-control">Speed:</label>
+        <input type="range" id="speed-control" min="1" max="10" value="5" />
+        <span id="speed-display">5</span>
+      </div>    
     </div>
     <script type="module">
       import pdfjsDist from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/+esm";

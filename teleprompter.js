@@ -3,6 +3,8 @@ let currentIndex = 0;
 let interval;
 let isPaused = false;
 const SEGMENT_SIZE = 10;
+let scrollSpeed = parseInt(document.getElementById("speed-control").value); // Initial speed
+let defaultInterval = 2000;
 
 window.addEventListener("load", function () {
   // only start when the page has fully loaded
@@ -19,10 +21,9 @@ function retrieveAndConvert() {
   const binaryString = atob(convertedContent); // convert the string to a binary string
   const fileContent = new Uint8Array(binaryString.length);
 
-  for (let i = 0; i < binaryString.length; i++) {
-    // convert the binary string back
-    fileContent[i] = binaryString.charCodeAt(i);
-  }
+  for (let i = 0; i < binaryString.length; i++) 
+    fileContent[i] = binaryString.charCodeAt(i); // convert the binary string back
+ 
   return fileContent;
 }
 
@@ -34,9 +35,8 @@ function parseContent(fileContent) {
         // once the first page is found, call function(page)
         page.getTextContent().then(function (text) {
           // once the text is found, call function(text)
-          for (let j = 0; j < text.items.length; j++) {
+          for (let j = 0; j < text.items.length; j++)
             content += text.items[j].str + " ";
-          }
         });
       });
     }
@@ -65,14 +65,34 @@ function showNextSet() {
   document.getElementById("nextContent").innerText = nextSet;
 }
 
+function calculateInterval(speed) {
+  return (11 - speed) * 200 + 1700;
+}
+
+// Play/Pause functionality
 function playPause() {
   if (isPaused) {
     isPaused = false;
-    interval = setInterval(showNextSet, 2000);
+    // Start or resume the interval with the current speed
+    interval = setInterval(showNextSet, calculateInterval(scrollSpeed)); // Adjust interval based on speed
     document.getElementById("play-pause").innerText = "Pause";
   } else {
     isPaused = true;
-    clearInterval(interval);
+    clearInterval(interval); // Stop the interval
     document.getElementById("play-pause").innerText = "Play";
   }
 }
+
+// Update speed dynamically based on slider value
+document.getElementById("speed-control").addEventListener("input", function () {
+  scrollSpeed = parseInt(this.value); // Update speed value
+
+  // Update the display
+  document.getElementById("speed-display").textContent = this.value;
+
+  if (!isPaused) {
+    // If the teleprompter is playing, update the interval with the new speed
+    clearInterval(interval);
+    interval = setInterval(showNextSet, calculateInterval(scrollSpeed)); // Adjust interval based on new speed
+  }
+});

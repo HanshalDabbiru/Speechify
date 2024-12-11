@@ -16,3 +16,13 @@ h1 {
   font-size: 3vh;
   color: gray;
 }
+
+#teleprompter-controls {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#speed-control {
+  width: 50%;
+  margin: 10px 0;
+}
