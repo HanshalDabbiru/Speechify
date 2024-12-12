@@ -1,3 +1,8 @@
+* {
+  background-color: lightblue;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 h1 {
   font-size: 8vh;
 }
@@ -8,9 +13,7 @@ h1 {
   height: 50vh;
   margin: 0px;
 }
-.lets-go {
-  display: none;
-}
+
 .file-upload {
   display: none;
 }
@@ -70,5 +73,8 @@ h1 {
   justify-content: center;
 }
 #lets-go {
-  width: 10vh;
+  width: 20vh;
+  height: 8vh;
+  border-radius: 30%;
+  
 }
