@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.teleprompter {
+  flex: 1;
+  width: 40%;
+}
+.presentation {
+  width: 60%;
+}
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0px;
+}
+.current {
+  font-size: 3vh;
+}
+.next {
+  font-size: 2vh;
+  color: gray;
+}
+
+#teleprompter-controls {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#speed-control {
+  width: 50%;
+  margin: 10px 0;
+}

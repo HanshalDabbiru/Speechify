@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promptly</title>
+    <link rel="stylesheet" href="presentation.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="presentation" id="presentation">
+        <div class="centered">
+          <h1 id="loading">Loading...</h1>
+          <canvas id="pdf-canvas"></canvas>
+          <div id="pdf-controls">
+            <button id="prev" onclick="prevPage()">Previous</button>
+            <button id="next" onclick="nextPage()">Next</button>
+          </div>
+        </div>
+      </div>
+      <div class="teleprompter" id="teleprompter">
+        <div class="centered">
+          <p class="next" id="prevContent"></p>
+          <p class="current" id="currentContent"></p>
+          <p class="next" id="nextContent"></p>
+          <button id="play-pause" onclick="playPause()">Play</button>
+          <div id="teleprompter-controls">
+            <label for="speed-control">Speed:</label>
+            <input type="range" id="speed-control" min="1" max="5" value="3" />
+            <span id="speed-display">3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import pdfjsDist from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/+esm";
+    </script>
+    <script src="presentation.js"></script>
+  </body>
+</html>

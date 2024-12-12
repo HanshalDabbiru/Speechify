@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: row; /* Ensures children are laid out horizontally */ 
+    }
+    .teleprompter {
+      flex: 0.25; /* Makes it take up equal space */
+    }
+    .presentation {
+      flex: 0.5; /* Makes it take up equal space */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="teleprompter">Teleprompter</div>
+    <div class="presentation">Presentation</div>
+  </div>
+</body>
+</html>

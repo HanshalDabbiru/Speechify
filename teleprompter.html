@@ -8,6 +8,7 @@
   <body>
     <div class="centered">
       <h1 id="loading">Loading...</h1>
+      <p class="next" id="prevContent"></p>
       <p class="current" id="currentContent"></p>
       <p class="next" id="nextContent"></p>
       <button id="play-pause" onclick="playPause()">Play</button>
@@ -15,7 +16,7 @@
         <label for="speed-control">Speed:</label>
         <input type="range" id="speed-control" min="1" max="5" value="3" />
         <span id="speed-display">3</span>
-      </div>    
+      </div>
     </div>
     <script type="module">
       import pdfjsDist from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/+esm";

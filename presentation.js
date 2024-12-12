@@ -1,3 +1,6 @@
+let currentpage = 1;
+let numPages = 0;
+let presentationContent = null;
 let content = "";
 let currentIndex = 0;
 let interval;
@@ -11,13 +14,17 @@ window.addEventListener("load", function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/build/pdf.worker.min.mjs";
 
-  const fileContent = retrieveAndConvert();
-  if (fileContent) parseContent(fileContent);
+  presentationContent = retrieveAndConvert();
+  let fileContent = retrieveAndConvertFile();
+  if (presentationContent) {
+    renderPage(1);
+    parseContent(fileContent);
+  }
   else document.getElementById("currentContent").innerText = "File not found.";
 });
 
 function retrieveAndConvert() {
-  const convertedContent = localStorage.getItem("fileContent"); // retrieve the file from local storage
+  const convertedContent = localStorage.getItem("presentationContent"); // retrieve the file from local storage
   const binaryString = atob(convertedContent); // convert the string to a binary string
   const fileContent = new Uint8Array(binaryString.length);
 
@@ -25,6 +32,54 @@ function retrieveAndConvert() {
     fileContent[i] = binaryString.charCodeAt(i); // convert the binary string back
 
   return fileContent;
+}
+function retrieveAndConvertFile() {
+    const convertedContent = localStorage.getItem("fileContent"); // retrieve the file from local storage
+    const binaryString = atob(convertedContent); // convert the string to a binary string
+    const fileContent = new Uint8Array(binaryString.length);
+  
+    for (let i = 0; i < binaryString.length; i++)
+      fileContent[i] = binaryString.charCodeAt(i); // convert the binary string back
+  
+    return fileContent;
+  }
+
+function renderPage(pageNum) {
+  let canvas = document.getElementById("pdf-canvas");
+  const context = canvas.getContext("2d");
+  pdfjsLib
+    .getDocument({ data: new Uint8Array(presentationContent) })
+    .promise.then(function (pdf) {
+      numPages = pdf.numPages;
+      pdf.getPage(pageNum).then((page) => {
+        const viewport = page.getViewport({ scale: 1.25 });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport,
+        };
+        page.render(renderContext);
+        document.getElementById("loading").style.display = "none";
+      });
+    });
+}
+
+function nextPage() {
+  if (currentpage < numPages) {
+    renderPage(currentpage + 1);
+    currentpage += 1;
+    console.log(numPages);
+    console.log(currentpage);
+  }
+}
+
+function prevPage() {
+  if (currentpage > 1) {
+    renderPage(currentpage - 1);
+    currentpage -= 1;
+  }
 }
 
 function parseContent(fileContent) {
@@ -38,7 +93,6 @@ function parseContent(fileContent) {
           for (let j = 0; j < text.items.length; j++)
             content += text.items[j].str + " ";
           if (i == pdf.numPages) {
-            document.getElementById("loading").style.display = "none";
             showNextSet();
           }
         });
