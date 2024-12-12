@@ -3,7 +3,7 @@ h1 {
 }
 .centered {
   display: flex;
-  align-items: center;
+  align-items:last baseline;
   justify-content: center;
   height: 50vh;
   margin: 0px;
@@ -46,7 +46,6 @@ h1 {
 .teleprompter {
   width: 50%;
   height: 25vh;
-  background-color: rosybrown;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,7 +55,6 @@ h1 {
 .presentation {
   width: 50%;
   height: 25vh;
-  background-color: royalblue;
   display: flex;
   flex-direction: row;
   align-items: center;
